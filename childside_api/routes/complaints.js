@@ -1,7 +1,7 @@
 import express from "express";
-import {  } from "../controllers/complaints.js";
+import { getComplaints } from "../controllers/complaints.js";
 const router = express.Router();
 
-router.get('')
+router.get("/",getComplaints)
 
 export default router

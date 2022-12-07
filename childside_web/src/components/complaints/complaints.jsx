@@ -1,59 +1,68 @@
+import Post from "../complaint/complaint";
 import "./complaints.scss";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
-import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { Link } from "react-router-dom";
-import Comments from "../comments/comments";
-import { useState } from "react";
+import { useQuery } from '@tanstack/react-query'
+import { makeRequest } from "../../axios";
 
-const Post = ({ post }) => {
-  const [commentOpen, setCommentOpen] = useState(false);
 
-  //TEMPORARY
-  const liked = false;
+const Posts = () => {
+    //TEMPORARY
+    //   const { isLoading, error, data } = useQuery(["complaint"],()=>{
+    //     makeRequest.get("/complaint").then((res)=>{
+    //         return res.data;
+    //     })
+    //   })
+    const posts = [
+        {
+            id: 1,
+            name: "John Doe",
+            userId: 1,
+            profilePic:
+                "https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=1600",
+            desc: "We are now energizing this no to child labour campaign",
+            img: "https://images.pexels.com/photos/4881619/pexels-photo-4881619.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        },
+        {
+            id: 2,
+            name: "Jane Doe",
+            userId: 2,
+            profilePic:
+                "https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=1600",
+            desc: "I have found this child at sarojini nagar,Delhi",
+        },
+    ];
+    // console.log(data);
+    return <div className="posts">
+        <div className="card">
+            <div className="card-header">
 
-  return (
-    <div className="post">
-      <div className="container">
-        <div className="user">
-          <div className="userInfo">
-            <img src={post.profilePic} alt="" />
-            <div className="details">
-              <Link
-                to={`/profile/${post.userId}`}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                <span className="name">{post.name}</span>
-              </Link>
-              <span className="date">1 min ago</span>
+                <div className="card-title">
+                    <h1 className="text-center">Complaint Page</h1>
+                </div>
             </div>
-          </div>
-          <MoreHorizIcon />
+            <div className="card-body d-flex justify-content-center">
+                <button className="btn btn-success me-4">
+                    <a href="https://pencil.gov.in/Complaints/add" target=" " style={{ textDecoration: "none" }} className="text-white">
+                        +Add New Complaint
+                    </a>
+                </button>
+                <button className="btn btn-warning ms-4">
+                    <a href="https://pencil.gov.in/Complaints/track" target=" " style={{ textDecoration: "none" }} className="text-white">
+                        Show Status
+                    </a>
+                </button>
+            </div>
         </div>
-        <div className="content">
-          <p>{post.desc}</p>
-          <img src={post.img} alt="" />
+        <div className="card">
+            <div className="card-title">
+                <h1 className="ms-4">History</h1>
+            </div>
+            <div className="card-body gap-2 d-flex justify-content-center">
+                {posts.map(post => (
+                    <Post post={post} key={post.id} />
+                ))}
+            </div>
         </div>
-        <div className="info">
-          <div className="item">
-            {liked ? <FavoriteOutlinedIcon /> : <FavoriteBorderOutlinedIcon />}
-            12 Likes
-          </div>
-          <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
-            <TextsmsOutlinedIcon />
-            12 Comments
-          </div>
-          <div className="item">
-            <ShareOutlinedIcon />
-            Share
-          </div>
-        </div>
-        {commentOpen && <Comments />}
-      </div>
-    </div>
-  );
+    </div>;
 };
 
-export default Post;
+export default Posts;

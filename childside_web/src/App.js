@@ -6,6 +6,7 @@ import {
   Outlet,
   Navigate,
 } from "react-router-dom";
+import { QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import Navbar from "./components/navbar/navbar";
 import Home from "./pages/home/Home";
 // import Profile from "./pages/profile/Profile";
@@ -15,14 +16,17 @@ import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
 import Donate from "./pages/donatePage/donate";
 import Profile from "./pages/profile/Profile";
+import Posts from "./components/complaints/complaints";
 
 function App() {
   const {currentUser} = useContext(AuthContext);
 
   const { darkMode } = useContext(DarkModeContext);
+  const queryClient = new QueryClient()
 
   const Layout = () => {
     return (
+      <QueryClientProvider client={queryClient}>
       <div className={`theme-${darkMode ? "dark" : "light"}`}>
         <Navbar />
         <div style={{ display: "flex" }}>
@@ -31,6 +35,7 @@ function App() {
           </div>
         </div>
       </div>
+      </QueryClientProvider>
     );
   };
 
@@ -63,6 +68,10 @@ function App() {
         {
           path: "/profile",
           element: <Profile />,
+        },
+        {
+          path: "/complaints",
+          element: <Posts />,
         },
       ],
     },

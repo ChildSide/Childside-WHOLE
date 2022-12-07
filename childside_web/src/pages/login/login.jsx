@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     try{
       await login(inputs);
-      navigate("/home")
+      navigate("/")
     }catch{
       setErr(err.response.data)
     }
@@ -51,7 +51,7 @@ const Login = () => {
             <input type="password" placeholder="Password" name="password" onChange={handleOnChange}/>
             <button onClick={handleLogin}>Login</button>
           </form>
-          {err & err}
+          {/* {err & err} */}
           <Link to="/home">
             <a>Go to Website without Login
             </a>
