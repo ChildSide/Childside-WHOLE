@@ -17,17 +17,18 @@ import { useContext } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { AuthContext } from "../../context/authContext";
 import axios from "axios";
+import Sidebar from '../sidebar/Sidebar'
 
 const Navbar = () => {
   const { toggle, darkMode } = useContext(DarkModeContext);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate()
-  const handleLogout =async (e)=>{
+  const handleLogout = async (e) => {
     e.preventDefault();
-    try{
+    try {
       await axios.post("http://localhost:8800/api/auth/logout")
       navigate("/login")
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
   }
@@ -35,18 +36,18 @@ const Navbar = () => {
     <div className="navbar">
       <div className="left">
         <Link data-toggle="tooltip" data-placement="bottom" title="Menu">
-        <GridViewOutlinedIcon  />
+          <GridViewOutlinedIcon />
         </Link>
         <Link to="/" style={{ textDecoration: "none" }}>
           <span>ChildSide</span>
         </Link>
         {darkMode ? (
-          <WbSunnyOutlinedIcon onClick={toggle} data-toggle="tooltip" data-placement="bottom" title="Click for Dark Mode"/>
+          <WbSunnyOutlinedIcon onClick={toggle} data-toggle="tooltip" data-placement="bottom" title="Click for Dark Mode" />
         ) : (
           <DarkModeOutlinedIcon onClick={toggle} data-toggle="tooltip" data-placement="bottom" title="Click for Light Mode" />
         )}
-        <Link to="/donate"  style={{ textDecoration: 'none' }} data-toggle="tooltip" data-placement="bottom" title="Click to Donate">
-        <VolunteerActivismIcon style={{textDecoration: 'none'}}/>
+        <Link to="/donate" style={{ textDecoration: 'none' }} data-toggle="tooltip" data-placement="bottom" title="Click to Donate">
+          <VolunteerActivismIcon style={{ textDecoration: 'none' }} />
         </Link>
         <div className="search">
           <SearchOutlinedIcon />
@@ -55,16 +56,16 @@ const Navbar = () => {
       </div>
       <div className="right">
         <Link to="/complaints">
-     < PostAddIcon/>
+          < PostAddIcon />
         </Link>
-      {/* <Link to="/profile"> */}
+        {/* <Link to="/profile"> */}
         {/* <SettingsIcon /> */}
         {/* <Link to="https://pencil.gov.in/Users/nclp_district"> */}
-          <a href="https://pencil.gov.in/Users/nclp_district"target=' '>
-        <InfoIcon />
-          </a>
+        <a href="https://pencil.gov.in/Users/nclp_district" target=' '>
+          <InfoIcon />
+        </a>
         {/* </Link> */}
-      {/* </Link> */}
+        {/* </Link> */}
         <EmailOutlinedIcon />
         <NotificationsOutlinedIcon />
         <div className="user">
@@ -73,10 +74,10 @@ const Navbar = () => {
             alt=""
           />
           <Link to="/profile">
-          <span>{currentUser.name}</span>
+            <span>{currentUser.name}</span>
           </Link>
           <a onClick={handleLogout}>
-          <LogoutIcon/>
+            <LogoutIcon />
           </a>
         </div>
       </div>

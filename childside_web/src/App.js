@@ -16,7 +16,7 @@ import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
 import Donate from "./pages/donatePage/donate";
 import Profile from "./pages/profile/Profile";
-import Posts from "./components/complaints/complaints";
+import Posts from "./components/posts/posts";
 
 function App() {
   const {currentUser} = useContext(AuthContext);
