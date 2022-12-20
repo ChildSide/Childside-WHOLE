@@ -5,6 +5,7 @@ import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import LogoutIcon from '@mui/icons-material/Logout';
+import Diversity1Icon from '@mui/icons-material/Diversity1';
 import SettingsIcon from '@mui/icons-material/Settings';
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
@@ -18,6 +19,7 @@ import { DarkModeContext } from "../../context/darkModeContext";
 import { AuthContext } from "../../context/authContext";
 import axios from "axios";
 import Sidebar from '../sidebar/Sidebar'
+import SideBar from "../sidebar/Sidebar";
 
 const Navbar = () => {
   const { toggle, darkMode } = useContext(DarkModeContext);
@@ -32,13 +34,12 @@ const Navbar = () => {
       console.log(err);
     }
   }
+  console.log(currentUser);
   return (
     <div className="navbar">
       <div className="left">
-        <Link data-toggle="tooltip" data-placement="bottom" title="Menu">
-          <GridViewOutlinedIcon />
-        </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
+      <SideBar style={{ color: 'inherit', textDecoration: 'inherit'}}/>
+        <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit'}}>
           <span>ChildSide</span>
         </Link>
         {darkMode ? (
@@ -46,7 +47,7 @@ const Navbar = () => {
         ) : (
           <DarkModeOutlinedIcon onClick={toggle} data-toggle="tooltip" data-placement="bottom" title="Click for Light Mode" />
         )}
-        <Link to="/donate" style={{ textDecoration: 'none' }} data-toggle="tooltip" data-placement="bottom" title="Click to Donate">
+        <Link to="/donate" style={{ color: 'inherit', textDecoration: 'inherit'}} data-toggle="tooltip" data-placement="bottom" title="Click to Donate">
           <VolunteerActivismIcon style={{ textDecoration: 'none' }} />
         </Link>
         <div className="search">
@@ -55,27 +56,30 @@ const Navbar = () => {
         </div>
       </div>
       <div className="right">
-        <Link to="/complaints">
+        <Link to="/complaint" style={{ color: 'inherit', textDecoration: 'inherit'}} data-toggle="tooltip" data-placement="bottom" title="File Complaint">
           < PostAddIcon />
         </Link>
         {/* <Link to="/profile"> */}
         {/* <SettingsIcon /> */}
         {/* <Link to="https://pencil.gov.in/Users/nclp_district"> */}
-        <a href="https://pencil.gov.in/Users/nclp_district" target=' '>
-          <InfoIcon />
+        <Link to="/community" style={{ color: 'inherit', textDecoration: 'inherit'}} data-toggle="tooltip" data-placement="bottom" title="Commnunity">
+        <Diversity1Icon />
+        </Link>
+        <a href="https://pencil.gov.in/Users/nclp_district" data-toggle="tooltip" data-placement="bottom" title="Commnunity" target=' ' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+          <InfoIcon  />
         </a>
         {/* </Link> */}
         {/* </Link> */}
-        <EmailOutlinedIcon />
+        {/* <EmailOutlinedIcon /> */}
         <NotificationsOutlinedIcon />
         <div className="user">
           <img
             src={currentUser.profilePic}
             alt=""
           />
-          <Link to="/profile">
+          {/* <Link to={`/profile/${currentUser.userId}`}>
+          </Link> */}
             <span>{currentUser.name}</span>
-          </Link>
           <a onClick={handleLogout}>
             <LogoutIcon />
           </a>

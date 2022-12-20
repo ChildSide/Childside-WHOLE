@@ -1,13 +1,11 @@
-import "./share.scss";
-// import Image from "../../assets/img.png";
-// import Map from "../../assets/map.png";
-// import Friend from "../../assets/friend.png";
+import "./complaint.scss";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
-const Share = () => {
+const Complaint = () => {
   const [file, setFile] = useState(null);
+  const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
 
   const upload = async () => {
@@ -26,12 +24,12 @@ const Share = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: ((newPost) => {
-      return makeRequest.post("/posts", newPost);
+    mutationFn: ((newComplaint) => {
+      return makeRequest.post("/complaint", newComplaint);
     }),
     onSuccess: () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["posts"]})
+      queryClient.invalidateQueries({ queryKey: ["complaint"]})
     },
   })
 
@@ -39,7 +37,7 @@ const Share = () => {
     e.preventDefault();
     let imgUrl = "";
     if (file) imgUrl = await upload();
-    mutation.mutate({ desc, img: imgUrl });
+    mutation.mutate({ name,desc, img: imgUrl });
     console.log(desc);
     setDesc("");  
     setFile(null);
@@ -48,33 +46,54 @@ const Share = () => {
   return (
     <div className="share">
       <div className="container">
+            <div>
+
+            <h1>Child Labour/Adolescent Child Details</h1>
+            </div>
         <div className="top">
           <div className="left">
             {/* <img src={"/upload/" + currentUser.profilePic} alt="" /> */}
-            <img src={currentUser.profilePic} alt="" />
+            <img src={currentUser.profilePic} alt="" /> 
+            <input type="text" placeholder="Enter Name" />
             <input
               type="text"
-              placeholder={`What's on your mind ${currentUser.name}?`}
+              placeholder={`Something about the situation ${currentUser.name}?`}
               onChange={(e) => setDesc(e.target.value)}
               value={desc}
-            />
+              />
+            <label htmlFor="file">
+              <div className="item">
+                {/* <img src={Image} alt="" /> */}
+                <span>Add Image</span>
+              </div>
+            </label>
           </div>
           <div className="right">
             {file && (
               <img className="file" alt="" src={URL.createObjectURL(file)} />
-            )}
+              )}
           </div>
         </div>
+              <h1>Address where child found</h1>
         <hr />
         <div className="bottom">
           <div className="left">
+              <input type="text" placeholder="Enter Name" onChange={(e) => setName(e.target.value)}
+              value={name}/>
+              <input type="text" placeholder="Village/Mohalla" />
+              <input type="text" placeholder="Ward/Panchayat" />
+              <input type="text" placeholder="Taluk/Block" />
+              <input type="text" placeholder="Tehsil/Subdistrict" />
+              <input type="text" placeholder="Landmark" />
+              <input type="text" placeholder="State" />
+              <input type="text" placeholder="District" />
             <input
               type="file"
               id="file"
               style={{ display: "none" }}
               onChange={(e) => setFile(e.target.files[0])}
             />
-            <label htmlFor="file">
+            {/* <label htmlFor="file">
               <div className="item">
                 <img src={Image} alt="" />
                 <span>Add Image</span>
@@ -85,9 +104,9 @@ const Share = () => {
               <span>Add Place</span>
             </div>
             <div className="item">
-              {/* <img src={Friend} alt="" /> */}
+              <img src={Friend} alt="" />
               <span>Tag Friends</span>
-            </div>
+            </div> */}
           </div>
           <div className="right">
             <button onClick={handleClick}>Share</button>
@@ -98,4 +117,4 @@ const Share = () => {
   );
 };
 
-export default Share;
+export default Complaint;

@@ -1,9 +1,36 @@
-import { db } from "../connect.js"
+import { db } from "../connect.js";
+import Jwt from "jsonwebtoken";
+import moment from "moment";
+export const getComplaint = (req, res) => {
+    const token = req.cookies.accessToken;
+    if (!token) return res.status(401).json("Token in not valid!")
+    Jwt.verify(token, "secretkey", (err, userInfo) => {
+        if (err) return res.status(403).json("Token is not valid!");
 
-export const getComplaints = (req,res)=>{
-    const q = `SELECT p.*,u.id AS userID,name,profilePic FROM complaints AS p JOIN users AS u ON (u.id = p.userID)`
-    db.query(q,(err,data)=>{
-        if(err) return res.status(500).json(err)
-        return res.status(200).json(data);
+        const q = `SELECT p.*, u.id AS userId , name , profilePic FROM posts AS p JOIN users AS u ON (u.id = p.userId)`;
+        db.query(q, [userInfo.id], (err, data) => {
+            if (err) return res.status(500).json(err)
+            return res.status(200).json(data);
+        });
+    });
+}
+export const addComplaint = (req, res) => {
+    const token = req.cookies.accessToken;
+    if (!token) return res.status(401).json("Token in not valid!")
+    Jwt.verify(token, "secretkey", (err, userInfo) => {
+        if (err) return res.status(403).json("Token is not valid!");
+
+        const q = "INSERT INTO complaints (`desc`,`img`,`createdAt`,`userId`) VALUES (?)";
+        const values= [
+            req.body.desc,
+            req.body.img,
+            moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+            userInfo.id
+        ];
+
+        db.query(q, [values], (err, data) => {
+            if (err) return res.status(500).json(err)
+            return res.status(200).json("Post has been created.");
+        });
     });
 }

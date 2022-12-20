@@ -17,6 +17,9 @@ import { AuthContext } from "./context/authContext";
 import Donate from "./pages/donatePage/donate";
 import Profile from "./pages/profile/Profile";
 import Posts from "./components/posts/posts";
+import Community from "./pages/community/Community";
+import Complaint from "./pages/Complaint/Complaint";
+import History from "./pages/history/History";
 
 function App() {
   const {currentUser} = useContext(AuthContext);
@@ -66,13 +69,27 @@ function App() {
           element: <Donate />,
         },
         {
-          path: "/profile",
+          path: "/profile/:id",
           element: <Profile />,
         },
         {
-          path: "/complaints",
+          path: "/posts",
           element: <Posts />,
         },
+        {
+          path:"/community",
+          element:<Community/>
+        }
+        ,
+        {
+          path:"/complaint",
+          element:<Complaint/>
+        }
+        ,
+        {
+          path:"/history",
+          element:<History/>
+        }
       ],
     },
     {

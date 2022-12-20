@@ -34,14 +34,7 @@ const Posts = () => {
     // ];
     // console.log(data);
     return <div className="posts">
-        <div >
-            <div >
-
-                <div>
-                    <h1 className="text-center">Complaint Page</h1>
-                </div>
-            </div>
-            <div className="card-body d-flex justify-content-center">
+            {/* <div className="card-body d-flex justify-content-center">
                 <button className="btn btn-success me-4">
                     <a href="https://pencil.gov.in/Complaints/add" target=" " style={{ textDecoration: "none" }} className="text-white">
                         +Add New Complaint
@@ -52,23 +45,12 @@ const Posts = () => {
                         Show Status
                     </a>
                 </button>
-            </div>
-        </div>
-        <div >
-            <div>
-                <h1 className="ms-4">History</h1>
-            </div>
-            <div className="gap-2 d-flex justify-content-center">
-                {/* {posts.map(post => (
-                    <Post post={post} key={post.id} />
-                ))} */}
+            </div> */}
                 {error ? "Something Went Wrong" : 
                     isLoading? "Loading": data.map(post => (
                         <Post post={post} key={post.id} />
                     ))
                 }
-            </div>
-        </div>
     </div>;
 };
 

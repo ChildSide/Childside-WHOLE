@@ -1,25 +1,47 @@
-// import { slide as Menu } from 'react-burger-menu'
-import React from 'react';
-import SidebarLinks from './SidebarLinks';
-export default class Example extends React.Component {
-  // showSettings (event) {
-  //   event.preventDefault();
+import React, { useContext, useState } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
+import { SidebarData } from './SidebarData';
+import './sidebar.scss';
+import { AuthContext } from '../../context/authContext';
 
-  // }
+function Sidebar() {
+  const [sidebar, setSidebar] = useState(false);
 
-  render () {
-    // NOTE: You also need to provide styles, see https://github.com/negomi/react-burger-menu#styling
-    return (
-      <nav className=''>
-      <SidebarLinks/>
-      </nav>
-      // <Menu>
-        
-      //   <a id="home" className="menu-item" href="/">Home</a>
-      //   <a id="about" className="menu-item" href="/about">About</a>
-      //   <a id="contact" className="menu-item" href="/contact">Contact</a>
-      //   <a onClick={ this.showSettings } className="menu-item--small" href="">Settings</a>
-      // </Menu>
-    );
-  }
+  const showSidebar = () => setSidebar(!sidebar);
+  
+  const { currentUser } = useContext(AuthContext);
+
+  return (
+    <>
+          <Link to='#' className='menu-bars'>
+            <MenuIcon onClick={showSidebar} />  
+          </Link>
+        <nav className={sidebar ? 'side-menu active' : 'side-menu'}>
+          <ul className='side-menu-items' onClick={showSidebar}>
+            <li className='sidebar-toggle'>
+              <Link to='#' className='menu-bars'>
+              <img src={require('../../assets/logocircle.png')} style={{width:'90px',marginleft:'10px'}} alt="" />
+              </Link>
+            </li>
+            <span style={{font:'small'}}>Hello, {currentUser.name}</span>
+            {SidebarData.map((item, index) => {
+              return (
+                
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    {item.icon}
+                    <a href={item.url} target=' '>
+                    <span>{item.title}</span>
+                    </a>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+    </>
+  );
 }
+
+export default Sidebar;
