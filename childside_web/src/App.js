@@ -20,6 +20,7 @@ import Posts from "./components/posts/posts";
 import Community from "./pages/community/Community";
 import Complaint from "./pages/Complaint/Complaint";
 import History from "./pages/history/History";
+import HomeNotLogin from "./pages/HomeNotLogin/HomeNotLogin";
 
 function App() {
   const {currentUser} = useContext(AuthContext);
@@ -99,6 +100,10 @@ function App() {
     {
       path: "/register",
       element: <Register />,
+    },
+    {
+      path: "/withoutLogin",
+      element: <HomeNotLogin />,
     },
   ]);
 
