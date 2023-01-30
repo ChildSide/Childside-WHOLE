@@ -7,15 +7,15 @@ export const SidebarData = [
     // icon: <CottageIcon/>,
     cName: 'side-text'
   },
+  // {
+  //   title: 'Profile',
+  //   path: '/reports',
+  //   // icon: <IoIcons.IoIosPaper />,
+  //   cName: 'side-text'
+  // },
   {
-    title: 'Profile',
-    path: '/reports',
-    // icon: <IoIcons.IoIosPaper />,
-    cName: 'side-text'
-  },
-  {
-    title: 'Policies',
-    path: '/products',
+    title: 'Donation Page',
+    path: '/donate',
     // icon: <FaIcons.FaCartPlus />,
     cName: 'side-text'
   },
@@ -25,23 +25,4 @@ export const SidebarData = [
     // icon: <IoIcons.IoMdPeople />,
     cName: 'side-text'
   },
-  {
-    title: 'File a Complaint',
-    path: '/complaint',
-    // icon: <FaIcons.FaEnvelopeOpenText />,
-    cName: 'side-text'
-  },
-  {
-    title: 'Check Status',
-    path: '/history',
-    // icon: <FaIcons.FaEnvelopeOpenText />,
-    cName: 'side-text'
-  },
-  {
-    title: 'Acts',
-    path:'/',
-    url:'https://pencil.gov.in/Users/acts',
-    // icon: <IoIcons.IoMdHelpCircle />,
-    cName: 'side-text'
-  }
 ];

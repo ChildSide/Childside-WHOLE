@@ -20,12 +20,23 @@ export const addComplaint = (req, res) => {
     Jwt.verify(token, "secretkey", (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid!");
 
-        const q = "INSERT INTO complaints (`desc`,`img`,`createdAt`,`userId`) VALUES (?)";
+        // const q = "INSERT INTO complaints (`desc`,`img`,`createdAt`,`userId`) VALUES (?)";
+        const q = "INSERT INTO complaints (`pic`,`houseno`,`village`,`ward`,`block`,`subdistrict`,`Landmark`,`State`,`District`,`reportName`,`mobNo`,`email`,`userId`,`createdAt`) VALUES (?)";
         const values= [
-            req.body.desc,
-            req.body.img,
-            moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-            userInfo.id
+            req.body.pic,
+            req.body.houseno,
+            req.body.village,
+            req.body.ward,
+            req.body.block,
+            req.body.subdistrict,
+            req.body.Landmark,
+            req.body.State,
+            req.body.District,
+            req.body.reportName,
+            req.body.mobNo,
+            req.body.email,
+            userInfo.id,
+            moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
         ];
 
         db.query(q, [values], (err, data) => {

@@ -55,16 +55,20 @@ const Navbar = () => {
         </div>
       </div>
       <div className="right">
-        <Link to="/complaint" style={{ color: 'inherit', textDecoration: 'inherit'}} data-toggle="tooltip" data-placement="bottom" title="File Complaint">
+        {/* <Link to="/complaint" style={{ color: 'inherit', textDecoration: 'inherit'}} data-toggle="tooltip" data-placement="bottom" title="File Complaint"> */}
+        <a href="https://pencil.gov.in/Complaints/add" data-toggle="tooltip" data-placement="bottom" title="Add Complaint" target=' ' style={{ color: 'inherit', textDecoration: 'inherit'}}>
           < PostAddIcon />
-        </Link>
+        </a>
+        {/* </Link> */}
         <Link to="/community" style={{ color: 'inherit', textDecoration: 'inherit'}} data-toggle="tooltip" data-placement="bottom" title="Commnunity">
         <Diversity1Icon />
         </Link>
         <a href="https://pencil.gov.in/Users/nclp_district" data-toggle="tooltip" data-placement="bottom" title="Commnunity" target=' ' style={{ color: 'inherit', textDecoration: 'inherit'}}>
           <InfoIcon  />
         </a>
+        <a href="https://pencil.gov.in/Users/whatsnew" data-toggle="tooltip" data-placement="bottom" title="Notification" target=' 'style={{ color: 'inherit', textDecoration: 'inherit'}}>
         <NotificationsOutlinedIcon />
+        </a>
         <div className="user">
           <img
             src={currentUser.profilePic}

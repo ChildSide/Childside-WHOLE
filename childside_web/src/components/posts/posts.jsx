@@ -10,6 +10,7 @@ const Posts = () => {
         queryKey: ["posts"],
         queryFn: () =>
             makeRequest.get("/posts").then((res) => {
+                console.log(res.data);
                 return res.data;
             })
     })

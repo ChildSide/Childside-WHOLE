@@ -25,6 +25,7 @@ const Donate = () => {
             </button>
              {/* <img src={require('../../assets/study.jpeg')} className="w-25" alt="" />
             <img src={require('../../assets/study2.jpeg')} className="w-25" alt="" /> */}
+            <div>Stripe Functionality is Coming SOON!</div>
         </div>
       </div>
     </div>

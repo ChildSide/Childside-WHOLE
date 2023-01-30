@@ -47,7 +47,7 @@ const Navbar = () => {
           <input type="text" placeholder="Search..." />
         </div> */}
       </div>
-        <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+        <Link to="/withoutLogin" style={{ color: 'inherit', textDecoration: 'inherit'}}>
           <span>ChildSide</span>
         </Link>
       <div className="right">

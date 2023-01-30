@@ -1,7 +1,9 @@
 import express from "express";
-import { getProgress } from "../controllers/progress.js";
+import { addProgress, deleteProgress, getProgress } from "../controllers/progress.js";
 const router = express.Router();
 
-router.get('/',getProgress)
+router.get("/", getProgress)
+router.post("/", addProgress)
+router.delete("/", deleteProgress)
 
 export default router
